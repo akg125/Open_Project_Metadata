@@ -1,0 +1,221 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample API server.  See source code in [Python Microservices](https://github.com/python-microservices/microservices-scaffold)"
+  version: "1.0.0"
+  title: "API of Films and actors"
+  termsOfService: "https://github.com/python-microservices/microservices-scaffold/"
+  contact:
+    email: "a.vara.1986@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+
+  /users/{id}/:
+    put:
+      tags:
+      - "UserUpdate"
+      summary: "Example endpoint update an user"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Id of the user"
+        required: true
+        type: "integer"
+
+      - in: "body"
+        name: "user"
+        description: "Data of the user"
+        required: true
+        # type: "json"
+
+        schema:
+          $ref: "#/definitions/UserProfile"
+      responses:
+        "200":
+          description: "The user created"
+          schema:
+            $ref: '#/definitions/UserProfile'
+        "405":
+          description: "Invalid input"
+    get:
+      tags:
+      - "Users"
+      summary: "Example endpoint return an user"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Id of the user"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "An users"
+          schema:
+            $ref: '#/definitions/UserProfile'
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "User not found"
+        "405":
+          description: "Validation exception"
+  
+  /users:
+    post:
+      tags:
+      - "Users"
+      summary: "Example endpoint return create a user"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "user"
+        description: "Data of the user"
+        required: true
+        schema:
+          $ref: "#/definitions/UserProfile"
+      responses:
+        "200":
+          description: "The user created"
+          schema:
+            $ref: '#/definitions/UserProfile'
+        "405":
+          description: "Invalid input"
+
+  /items/{id}/:
+    put:
+      tags:
+      - "ItemUpdate"
+      summary: "Example endpoint update an item"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Id of the item"
+        required: true
+        type: "integer"
+
+      - in: "body"
+        name: "item"
+        description: "Data of the item"
+        required: true
+        # type: "json"
+
+        schema:
+          $ref: "#/definitions/Item"
+      responses:
+        "200":
+          description: "The item created"
+          schema:
+            $ref: '#/definitions/Item'
+        "405":
+          description: "Invalid input"
+    get:
+      tags:
+      - "Items"
+      summary: "Example endpoint return an item"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Id of the item"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "An item"
+          schema:
+            $ref: '#/definitions/Item'
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Item not found"
+        "405":
+          description: "Validation exception"
+  
+  /items:
+    post:
+      tags:
+      - "Items"
+      summary: "Example endpoint return create an item"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "item"
+        description: "Data of the item"
+        required: true
+        schema:
+          $ref: "#/definitions/Item"
+      responses:
+        "200":
+          description: "The item created"
+          schema:
+            $ref: '#/definitions/Item'
+        "405":
+          description: "Invalid input"
+
+
+definitions:
+
+      UserProfile:
+        type: "object"
+        properties:
+          user_id:
+            type: "integer"
+          contact_number:
+            type: "string"
+          address:
+            type: "string"
+          wallet_points:
+            type: "integer"
+      Users:
+        type: "array"
+        items:
+          $ref: '#/definitions/UserProfile'
+
+
+      Item:
+        type: "object"
+        properties:
+          item_id:
+            type: "integer"
+          receipe:
+            type: "string"
+          extra_info:
+            type: "string"
+      Items:
+        type: "array"
+        items:
+          $ref: '#/definitions/Item'
+
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "https://github.com/python-microservices/microservices-scaffold"
